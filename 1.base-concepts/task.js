@@ -4,7 +4,7 @@ function solveEquation(a, b, c) {
   let arr = [];
   let discriminant = Math.pow(b, 2) - 4 * a * c;
   
-  if (discriminant == 0) {
+  if (discriminant === 0) {
     let squareRoot = - b / (2 * a);
     arr.push(squareRoot); 
   } else if (discriminant > 0) {
@@ -19,8 +19,21 @@ function solveEquation(a, b, c) {
   return arr;
 }
 
-solveEquation(2, -12, 3)
-
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+  percent = +percent;
+  contribution = +contribution;
+  amount = +amount;
+  countMonths = +countMonths;
+
+  while (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
+    return false;
+  } 
+    
+  percent = (percent / 100) / 12;
+
+  let principalDebt = amount - contribution;
+  let monthlyPayment = principalDebt * (percent + (percent / (Math.pow((1 + percent), countMonths) - 1)));
+  let totalMortgage = Math.floor((monthlyPayment * countMonths) * 100) / 100;
   
+  return totalMortgage;
 }
