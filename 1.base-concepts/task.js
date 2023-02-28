@@ -12,9 +12,7 @@ function solveEquation(a, b, c) {
       let squareRoot2 = (- b - Math.sqrt(discriminant)) / (2 * a);
       arr.push(squareRoot1);
       arr.push(squareRoot2);
-    } else if (discriminant < 0) {
-      return arr;
-      }
+    } 
   
   return arr;
 }
@@ -25,15 +23,15 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   amount = +amount;
   countMonths = +countMonths;
 
-  while (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
+  if (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
     return false;
   } 
-    
+  
   percent = (percent / 100) / 12;
-
   let principalDebt = amount - contribution;
   let monthlyPayment = principalDebt * (percent + (percent / (Math.pow((1 + percent), countMonths) - 1)));
-  let totalMortgage = Math.floor((monthlyPayment * countMonths) * 100) / 100;
-  
+  let totalMortgage = monthlyPayment * countMonths;
+  totalMortgage = +totalMortgage.toFixed(2);
+      
   return totalMortgage;
 }
