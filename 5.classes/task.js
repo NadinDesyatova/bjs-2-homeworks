@@ -18,7 +18,7 @@ class PrintEditionItem {
 			this._state = 0;
 		} else if (currentState > 100) {
 			this._state = 100;
-		} 
+		}
 	}
 
 	get state() {
@@ -77,71 +77,67 @@ class Library {
 	findBookBy(type, value) {
 		let searchBookByType = this.books.find(book => book[type] === value);
 
-    	if (searchBookByType === undefined) {
-        	return null;
-    	}
-
-    	return searchBookByType;
+		return searchBookByType || null;
 	}
 
 	giveBookByName(bookName) {
 		let indexSearchBook = this.books.findIndex(book => book.name === bookName);
 		let searchBookName = this.books[indexSearchBook];
-    	if (indexSearchBook === -1) {
-        	return null;
-    	}
-    	
-    	this.books.splice(indexSearchBook, 1);
+		if (indexSearchBook === -1) {
+			return null;
+		}
+
+		this.books.splice(indexSearchBook, 1);
 
 		return searchBookName;
 	}
 }
 
 class Student {
-	constructor (name, marks = {}) {
+	constructor(name, marks = {}) {
 		this.name = name;
-  		this.marks = marks;
+		this.marks = marks;
 	}
-	
+
 	addMark(mark, subject) {
 		if (mark >= 2 && mark <= 5) {
 			if (this.marks[subject] === undefined) {
-    			this.marks[subject] = [];
-			}	
+				this.marks[subject] = [];
+			}
 
 			this.marks[subject].push(mark);
 		}
 	}
-		
+
 	getAverageBySubject(subject) {
 		if (this.marks[subject] === undefined) {
-    		return 0;
-		}	
+			return 0;
+		}
 
-  		let averageBySubject = this.marks[subject].reduce((accum, current, index, arr) => {
-    		accum += current;
-    		if (index === arr.length - 1) {
-    			return accum / arr.length;
-    		}
-    		
-    		return accum;
-  		}, 0);
+		let averageBySubject = this.marks[subject].reduce((accum, current, index, arr) => {
+			accum += current;
+			if (index === arr.length - 1) {
+				return accum / arr.length;
+			}
 
-  		return averageBySubject;
+			return accum;
+		}, 0);
+
+		return averageBySubject;
 	}
 
 	getAverage() {
 		let allSubjects = Object.keys(this.marks);
-  		let averageByAllSubjects = allSubjects.reduce((accum, item, index, arr) => {
-    		let currentAverage = this.getAverageBySubject(item);
-    		accum += currentAverage;
-    		if (index === arr.length - 1) {
-    			return accum / arr.length;
-    		}
-    		
-    		return accum;
-  		}, 0);
+		let averageByAllSubjects = allSubjects.reduce((accum, item, index, arr) => {
+			let currentAverage = this.getAverageBySubject(item);
+			accum += currentAverage;
+			if (index === arr.length - 1) {
+				return accum / arr.length;
+			}
 
-  		return averageByAllSubjects;
-  	}
+			return accum;
+		}, 0);
+
+		return averageByAllSubjects;
+	}
 }
