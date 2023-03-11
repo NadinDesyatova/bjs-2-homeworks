@@ -8,7 +8,7 @@ class PrintEditionItem {
 }
 
   fix() {
-  this.state = this.state * 1.5;
+    this.state = this.state * 1.5;
   }
 
   set state(currentState) {
@@ -19,7 +19,7 @@ class PrintEditionItem {
     } else if (currentState > 100) {
 	  this._state = 100;
 	  }
-	}
+  }
 
   get state() {
 	return this._state;
@@ -123,7 +123,7 @@ class Student {
 	  return accum;
 	}, 0);
 
-	  return averageBySubject;
+	return averageBySubject;
   }
 
   getAverage() {
