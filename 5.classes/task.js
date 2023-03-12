@@ -5,7 +5,7 @@ class PrintEditionItem {
   this.pagesCount = pagesCount;
   this.state = 100;
   this.type = null;
-}
+  }
 
   fix() {
     this.state = this.state * 1.5;
@@ -136,7 +136,7 @@ class Student {
 	  }
 
 	  return accum;
-	  }, 0);
+	}, 0);
 
 	return averageByAllSubjects;
   }
